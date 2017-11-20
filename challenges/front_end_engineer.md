@@ -1,51 +1,137 @@
-# Apprear Here Frontend Engineer Code Challenge
+# Appear Here Front End Engineer Code Discussion
 
-Thanks for agreeing to have a crack at our code challenge.
+Hello,
 
-This exercise is to build a small application to help users search for coffee shops based on postcodes. We’ve written users stories based on users’ insights which should enable you to build a prototype of the application.
+Thanks for agreeing to walk through some code with us over video a call.
 
-This is a Greenfield application, so no API has been provided, nor has the data structure been defined. Use this as an opportunity to propose an API design. Don’t feel that it’s necessary to create the API, stubbing one out is acceptable.
+It may help to have a brief look over the code before hand but don't worry about that too much as we will be looking at it during the call.
 
-## User stories
+This is to help us gage how well we would work together.
 
-The product manager has written some user stories to guide you. In the case of this challenge, feel free to deviate from the provided stories if you feel it would provide a better experience for the user. In practise, beyond this task, you would be involved in the process the creation of these users stories, so deviation would be much less likely.
+Please have the code ready in a text editor.
 
-### Prototype
+Speak soon,
+Appear Here
 
-* [Epic] As a user, I want to find great coffee shops, so I can find the best places to go on the weekend.
-  * [User story] As a user, I want to search for coffee shops by postcode, so I can find what’s around in my local area.
-  * [User story] As a user, I want to be able to see the coffee shops on a map, so I can decide where to go based on what they are close to.
+## Form.css
 
-### Stretch goals
+```css
+.Form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
 
-  * [User story] As a user, I want to be able to share the selected coffee shop, so I can inform my friends where to meet me.
+.Form * {
+  margin-bottom: 30px;
+}
 
-## How long to spend
+.Form input {
+  width: 10%;
+  transition: width 2s;
+}
 
-We're looking for an app and code that you're proud of. It shouldn't take more than a few hours, but there's no set time limit. Within a week is good. Don’t spend too long on the task; it doesn’t need to be complete. Ultimately we're going to make a judgement about your skill level and approach on this basis.
+.Form input:focus {
+  width: 100%;
+}
 
-## What we look for
+.no-padding {
+  margin-bottom: 0;
+}
+```
 
-* Imagine this is the one part of a larger application; we want to get a feel for how you’d work in a real codebase.
-* Think about the usability and overall experience of using the application you’ve built.
-* Consider the aesthetic of the application; you’d normally be working closely with a design team, but in this case, the ball is in your court.
-* Think about performance, edge-cases and error handling.
-* It would be nice to see some tests, but not essential.
+## Form.jsx
 
-## What tools to use
+```jsx
+import React, { Component } from 'react';
 
-Feel free to use what ever tools you'd like, but as this is going to be part of a larger application, we'd recommend bootstraping the project by using a boilerplate or a CLI, e.g., [create-react-app](https://github.com/facebookincubator/create-react-app), [ember-cli](https://ember-cli.com/), [angular-cli](https://cli.angular.io/)
+import './Form.css';
 
-One caveat is that we’d prefer if you didn’t rely on a CSS framework. We want to get an insight into your CSS capabilities as much as anything else.
+class Form extends Component {
+  state = {
+    form: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    },
+  };
 
-## How to deliver your code/app
 
-Once you're finished, deploy your solution. Email us back a link to the deployed application and attach your code as a git bundle ([documentation](https://git-scm.com/docs/git-bundle)).
+  handleFirstNameChange = (e) => {
+    this.setState({
+      form: {
+        firstName: e.target.value,
+      },
+    });
+  };
 
-*Please don't push to a public repo e.g. on Github.*
+  handleLastNameChange = (e) => {
+    this.setState({
+      form: {
+        lastName: e.target.value,
+      },
+    });
+  };
 
-## What happens next?
+  handleEmailChange = (e) => {
+    this.setState({
+      form: {
+        email: e.target.value,
+      },
+    });
+  };
 
-We'll take a look at your code and get back to you with feedback within 7 days.
+  handlePasswordChange = (e) => {
+    this.setState({
+      form: {
+        password: e.target.value,
+      },
+    });
+  };
 
-That's it! Good luck.
+  validateForm = () => {
+    const formInputs = ['firstName', 'lastName', 'emailAddress', 'password'];
+
+    for ( let i = 0; i < formInputs.length; i++ ) {
+      const inputName = formInputs[i];
+
+      if (!this.state.form[inputName].length) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  handleSubmit = () => {
+    if (this.validateForm()) {
+      console.log('Success!');
+    } else {
+      console.log('Failure!');
+    }
+  };
+
+  render() {
+    return (
+      <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+        <form
+          className="Form"
+          onSubmit={ (e) => {
+            e.preventDefault();
+            this.handleSubmit();
+          } }
+        >
+          <input name="firstName" onChange={ this.handleFirstNameChange }/>
+          <input name="lastName" onChange={ this.handleLastNameChange }/>
+          <input name="email" onChange={ this.handleEmailChange }/>
+          <input name="password" onChange={ this.handlePasswordChange }/>
+          <button className="no-padding">Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Form;
+```
