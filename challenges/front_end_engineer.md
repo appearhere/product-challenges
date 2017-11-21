@@ -2,11 +2,11 @@
 
 Hello,
 
-Thanks for agreeing to walk through some code with us over video a call.
+Thanks for agreeing to walk through some code with us over a video call.
 
-It may help to have a brief look over the code before hand but don't worry about that too much as we will be looking at it during the call.
+It may help to have a brief look over the code beforehand, but don't worry about that too much as we will be looking at it during the call.
 
-This is to help us gage how well we would work together.
+This is to help us gauge how well we would work together.
 
 Please have the code ready in a text editor.
 
