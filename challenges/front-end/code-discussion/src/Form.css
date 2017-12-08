@@ -1,0 +1,22 @@
+.Form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Form * {
+  margin-bottom: 30px;
+}
+
+.Form input {
+  width: 10%;
+  transition: width 2s;
+}
+
+.Form input:focus {
+  width: 100%;
+}
+
+.no-padding {
+  margin-bottom: 0;
+}
